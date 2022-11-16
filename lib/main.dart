@@ -6,7 +6,7 @@ void main() {
       home: Scaffold(
         backgroundColor: Colors.red,
         appBar: AppBar(
-          title: Text('Dice'),
+          title: const Text('Dice'),
           backgroundColor: Colors.red,
         ),
         body: DicePage(),
@@ -15,8 +15,15 @@ void main() {
   );
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
   const DicePage({Key? key}) : super(key: key);
+
+  @override
+  State<DicePage> createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDiceNumber = 5;
 
   @override
   Widget build(BuildContext context) {
@@ -26,8 +33,12 @@ class DicePage extends StatelessWidget {
           children: [
             Expanded(
               child: TextButton(
-                onPressed: () {},
-                child: Image.asset('images/dice1.png'),
+                onPressed: () {
+                  setState(() {
+                    leftDiceNumber = 5;
+                  });
+                },
+                child: Image.asset('images/dice$leftDiceNumber.png'),
               ),
             ),
             Expanded(
